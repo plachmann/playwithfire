@@ -17,7 +17,7 @@ interface Post {
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   postsCol: AngularFirestoreCollection<Post>;
   posts: Observable<Post[]>;
   title: string;
@@ -28,11 +28,26 @@ export class AppComponent {
   ngOnInit() {
     this.postsCol = this.afs.collection("posts");
     this.posts = this.postsCol.valueChanges();
+    this.addStuff();
   }
 
   addPost() {
     this.afs
       .collection("posts")
       .add({ title: this.title, content: this.content });
+  }
+
+  addStuff() {
+    console.log("Adding stuff.");
+    this.afs
+      .collection("shoes")
+      .doc("Nike")
+      .set({ size: 10, model: "RunPro 11" })
+      .then(function() {
+        console.log("Nike 123");
+      })
+      .catch(function() {
+        console.log("Problem with Nike");
+      });
   }
 }
