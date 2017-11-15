@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Playwithfire</title>
@@ -8,7 +9,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
   <app-root></app-root>
 </body>
+
 </html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBPi3Epfj3kSz0LMqPDHsQzSdJiQilL4Gk",
+    authDomain: "philiscool-41591.firebaseapp.com",
+    databaseURL: "https://philiscool-41591.firebaseio.com",
+    projectId: "philiscool-41591",
+    storageBucket: "philiscool-41591.appspot.com",
+    messagingSenderId: "1099335966677"
+  };
+  firebase.initializeApp(config);
+</script>
