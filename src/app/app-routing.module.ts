@@ -3,12 +3,17 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { Philpage1Component } from "./philpage1/philpage1.component";
 import { FireComponent } from "./fire/fire.component";
+import { AskQuestionsComponent } from "./ask-questions/ask-questions.component";
 
 const routes: Routes = [
-  { path: "", component: Philpage1Component },
+  { path: "", component: FireComponent },
   {
     path: "fred",
-    component: FireComponent
+    component: Philpage1Component
+  },
+  {
+    path: "questions",
+    component: AskQuestionsComponent
   }
 ];
 

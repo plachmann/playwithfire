@@ -11,9 +11,10 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { Philpage1Component } from "./philpage1/philpage1.component";
 import { FireComponent } from './fire/fire.component';
+import { AskQuestionsComponent } from './ask-questions/ask-questions.component';
 
 @NgModule({
-  declarations: [AppComponent, Philpage1Component, FireComponent],
+  declarations: [AppComponent, Philpage1Component, FireComponent, AskQuestionsComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
