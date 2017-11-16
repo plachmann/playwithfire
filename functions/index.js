@@ -42,3 +42,14 @@ exports.makeUppercase = functions.database
     // Setting an "uppercase" sibling in the Realtime Database returns a Promise.
     return event.data.ref.parent.child("uppercase").set(uppercase);
   });
+
+// Listen for any change on document `marie` in collection `users`
+exports.logIt = functions.firestore.document("shoes/Nike").onWrite(event => {
+  // ... Your code here
+  var db = admin.firestore();
+
+  db.collection("log").add({
+    message: "Got It",
+    thetime: new Date()
+  });
+});

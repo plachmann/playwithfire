@@ -1,53 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument
-} from "angularfire2/firestore";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-
-interface Post {
-  title: string;
-  content: string;
-}
+import { Component, ViewContainerRef } from "@angular/core";
+import { environment } from "../environments/environment";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent implements OnInit {
-  postsCol: AngularFirestoreCollection<Post>;
-  posts: Observable<Post[]>;
-  title: string;
-  content: string;
-
-  constructor(private afs: AngularFirestore) {}
-
-  ngOnInit() {
-    this.postsCol = this.afs.collection("posts");
-    this.posts = this.postsCol.valueChanges();
-    this.addStuff();
-  }
-
-  addPost() {
-    this.afs
-      .collection("posts")
-      .add({ title: this.title, content: this.content });
-  }
-
-  addStuff() {
-    console.log("Adding stuff.");
-    this.afs
-      .collection("shoes")
-      .doc("Nike")
-      .set({ size: 10, model: "RunPro 11" })
-      .then(function() {
-        console.log("Nike 123");
-      })
-      .catch(function() {
-        console.log("Problem with Nike");
-      });
+export class AppComponent {
+  title = "app works!";
+  constructor(private vRef: ViewContainerRef) {
+    console.log(this.title);
   }
 }
