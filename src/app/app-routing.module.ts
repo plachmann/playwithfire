@@ -6,9 +6,12 @@ import { FireComponent } from "./fire/fire.component";
 import { AskQuestionsComponent } from "./ask-questions/ask-questions.component";
 
 const routes: Routes = [
-  { path: "", component: FireComponent },
   {
-    path: "fred",
+    path: "",
+    component: FireComponent
+  },
+  {
+    path: "phil",
     component: Philpage1Component
   },
   {
