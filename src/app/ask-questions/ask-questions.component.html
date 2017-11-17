@@ -1,4 +1,4 @@
-<h2> Answer these questions </h2>
+<!-- <h2> Answer these questions </h2>
 <br>
 <br>
 <ul *ngFor="let question of questionArray">
@@ -7,9 +7,12 @@
     <br> {{ question.questioncategory}}
     <br> {{ question.questionweight}}
   </li>
-</ul>
+</ul> -->
 
 <h2>Current Question</h2>
 <br> {{ currentQuestion.questiontext }}
 <br>
-<button (click)="GetNextQuestion()"> {{buttonText}}</button>
+<div>
+  <a *ngFor="let answer of answerArray" [routerLink]="" (click)="passTheSalt()">{{answer.answertext}}</a>
+</div>
+<br>
