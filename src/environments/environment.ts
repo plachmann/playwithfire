@@ -9,7 +9,7 @@ export const environment = {
     apiKey: "AIzaSyBPi3Epfj3kSz0LMqPDHsQzSdJiQilL4Gk",
     authDomain: "philiscool-41591.firebaseapp.com",
     databaseURL: "https://philiscool-41591.firebaseio.com",
-    storageBucket: "philiscool-41591.appspot.com",
+    storageBucket: "gs://philiscool-41591.appspot.com",
     projectId: "philiscool-41591"
   }
 };
