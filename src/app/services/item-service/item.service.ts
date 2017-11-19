@@ -3,7 +3,7 @@ import {
   AngularFirestore
 } from "angularfire2/firestore";
 import { Injectable } from "@angular/core";
-import { Item } from "./models/item";
+import { Item } from "../../models/item";
 import { Observable } from "rxjs/Rx";
 import "rxjs/add/operator/map";
 

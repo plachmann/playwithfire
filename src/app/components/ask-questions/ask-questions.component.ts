@@ -1,7 +1,7 @@
-import { ItemService } from "../item.service";
+import { ItemService } from "../../services/item-service/item.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Rx";
-import { Item } from "../models/item";
+import { Item } from "../../models/item";
 import {
   AngularFirestore,
   AngularFirestoreCollection

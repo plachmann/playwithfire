@@ -1,9 +1,9 @@
 import { AppComponent } from "./app.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { Philpage1Component } from "./philpage1/philpage1.component";
-import { FireComponent } from "./fire/fire.component";
-import { AskQuestionsComponent } from "./ask-questions/ask-questions.component";
+import { Philpage1Component } from "./components/philpage1/philpage1.component";
+import { FireComponent } from "./components/fire/fire.component";
+import { AskQuestionsComponent } from "./components/ask-questions/ask-questions.component";
 
 const routes: Routes = [
   {

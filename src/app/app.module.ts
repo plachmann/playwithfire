@@ -9,11 +9,11 @@ import { environment } from "../environments/environment";
 export const firebaseConfig = environment.firebaseConfig;
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from "angularfire2/firestore";
-import { Philpage1Component } from "./philpage1/philpage1.component";
-import { FireComponent } from "./fire/fire.component";
-import { AskQuestionsComponent } from "./ask-questions/ask-questions.component";
+import { Philpage1Component } from "./components/philpage1/philpage1.component";
+import { FireComponent } from "./components/fire/fire.component";
+import { AskQuestionsComponent } from "./components/ask-questions/ask-questions.component";
 import { AlertModule } from "ngx-bootstrap";
-import { ItemService } from "./item.service";
+import { ItemService } from "./services/item-service/item.service";
 
 @NgModule({
   declarations: [
