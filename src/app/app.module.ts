@@ -13,6 +13,7 @@ import { Philpage1Component } from "./philpage1/philpage1.component";
 import { FireComponent } from "./fire/fire.component";
 import { AskQuestionsComponent } from "./ask-questions/ask-questions.component";
 import { AlertModule } from "ngx-bootstrap";
+import { ItemService } from "./item.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { AlertModule } from "ngx-bootstrap";
     AppRoutingModule,
     AlertModule.forRoot()
   ],
-  providers: [],
+  providers: [ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,5 +1,7 @@
+import { ItemService } from "../item.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Rx";
+import { Item } from "../models/item";
 import {
   AngularFirestore,
   AngularFirestoreCollection
@@ -17,12 +19,6 @@ interface Answer {
   answervalue: number;
 }
 
-interface TestResponse {
-  questiontext: string;
-  questionweight: number;
-  answertext: string;
-  answervalue: number;
-}
 @Component({
   selector: "app-ask-questions",
   templateUrl: "./ask-questions.component.html",
@@ -43,7 +39,17 @@ export class AskQuestionsComponent implements OnInit {
     questionweight: 0
   };
 
-  constructor(private afs: AngularFirestore) {}
+  r1: Item = {
+    questiontext: "Question 1",
+    questionweight: 3,
+    answertext: "Answer 1",
+    answervalue: 2
+  };
+
+  constructor(
+    private afs: AngularFirestore,
+    private itemService: ItemService
+  ) {}
 
   ngOnInit() {
     this.questionsCol = this.afs.collection("srfp-questions");
@@ -59,6 +65,12 @@ export class AskQuestionsComponent implements OnInit {
   public passTheSalt() {
     console.log("salt passed");
     this.GetNextQuestion();
+  }
+
+  public submitTestResponses() {
+    this.itemService.addItem(this.r1);
+
+    console.log("added");
   }
 
   private getQuestionArray() {
