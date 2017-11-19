@@ -1,3 +1,4 @@
+import { StorageService } from "../../services/storage-service/storage.service";
 import { ItemService } from "../../services/item-service/item.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Rx";
@@ -48,7 +49,8 @@ export class AskQuestionsComponent implements OnInit {
 
   constructor(
     private afs: AngularFirestore,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit() {
