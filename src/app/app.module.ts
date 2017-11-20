@@ -14,6 +14,8 @@ import { AlertModule } from "ngx-bootstrap";
 import { ItemService } from "./services/item-service/item.service";
 import { StorageService } from "./services/storage-service/storage.service";
 import { AuthService } from "./services/auth-service/auth.service";
+import { FlameLink } from "flamelink";
+import { FlamelinkplaygroundComponent } from "./components/flamelinkplayground/flamelinkplayground.component";
 
 export const firebaseConfig = environment.firebaseConfig;
 @NgModule({
@@ -21,7 +23,8 @@ export const firebaseConfig = environment.firebaseConfig;
     AppComponent,
     Philpage1Component,
     FireComponent,
-    AskQuestionsComponent
+    AskQuestionsComponent,
+    FlamelinkplaygroundComponent
   ],
   imports: [
     BrowserModule,
