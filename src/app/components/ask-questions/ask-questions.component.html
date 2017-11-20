@@ -2,19 +2,22 @@
   <div class="row content">
     <div class="col-sm-1">
     </div>
-    <div class="col-sm-11">
+    <div *ngIf="first" class="card-block col-sm-11">
+      <h4 class="card-title">Looks like your ready to start the test.</h4>
+      <p class="card-text">Press the button and let's go!</p>
+      <a (click)="startTest()" class="btn btn-primary">Get the party started!</a>
+    </div>
+    <div *ngIf="!first" class="col-sm-11">
       <h2>Current Question</h2>
-      <br> {{ currentQuestion.questiontext }}
+      <br>
+      <h4>{{ currentQuestion.questiontext }}</h4>
     </div>
   </div>
-  <div class="row content">
+  <div *ngIf="!first && !last" class="row content">
     <div class="col-sm-5">
     </div>
     <div class="col-sm-1" *ngFor="let answer of answerArray">
-      <a [routerLink]="" (click)="passTheSalt()">{{answer.answertext}}</a>
+      <a [routerLink]="" (click)="passTheSalt()" class="btn btn-primary">{{answer.answertext}}</a>
     </div>
   </div>
 </div>
-
-
-<a [routerLink]="" (click)="submitTestResponses()">Click Me</a>
