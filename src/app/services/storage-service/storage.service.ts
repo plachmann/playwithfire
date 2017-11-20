@@ -14,11 +14,14 @@ export class StorageService {
     let storage = firebase.storage();
 
     // Create a storage reference from our storage service
-    let storageRef = storage.ref();
+    let storageRef = firebase.storage().ref();
+
+    // Create a reference to 'mountains.jpg'
+    let mountainsRef = storageRef.child("mountains.txt");
 
     let message = "This is my message.";
 
-    storageRef
+    mountainsRef
       .putString(message)
       .then(function(snapshot) {
         console.log("Uploaded a raw string!");

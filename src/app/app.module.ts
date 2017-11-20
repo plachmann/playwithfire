@@ -13,6 +13,7 @@ import { AskQuestionsComponent } from "./components/ask-questions/ask-questions.
 import { AlertModule } from "ngx-bootstrap";
 import { ItemService } from "./services/item-service/item.service";
 import { StorageService } from "./services/storage-service/storage.service";
+import { AuthService } from "./services/auth-service/auth.service";
 
 export const firebaseConfig = environment.firebaseConfig;
 @NgModule({
@@ -30,7 +31,7 @@ export const firebaseConfig = environment.firebaseConfig;
     AppRoutingModule,
     AlertModule.forRoot()
   ],
-  providers: [ItemService, StorageService],
+  providers: [ItemService, StorageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

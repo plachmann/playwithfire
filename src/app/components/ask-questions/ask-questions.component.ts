@@ -1,5 +1,6 @@
 import { StorageService } from "../../services/storage-service/storage.service";
 import { ItemService } from "../../services/item-service/item.service";
+import { AuthService } from "../../services/auth-service/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Rx";
 import { Item } from "../../models/item";
@@ -26,6 +27,8 @@ interface Answer {
   styleUrls: ["./ask-questions.component.css"]
 })
 export class AskQuestionsComponent implements OnInit {
+  first: boolean = true;
+  last: boolean = false;
   questionsCol: AngularFirestoreCollection<Question>;
   questions: Observable<Question[]>;
   questionArray: Question[];
@@ -50,10 +53,13 @@ export class AskQuestionsComponent implements OnInit {
   constructor(
     private afs: AngularFirestore,
     private itemService: ItemService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.authService.signIn();
+
     this.questionsCol = this.afs.collection("srfp-questions");
     this.questions = this.questionsCol.valueChanges();
     this.answersCol = this.afs.collection("srfp-answers", ref =>
@@ -64,9 +70,17 @@ export class AskQuestionsComponent implements OnInit {
     this.getAnswerArray();
   }
 
+  public startTest() {
+    this.first = false;
+  }
+
   public passTheSalt() {
     console.log("salt passed");
-    this.GetNextQuestion();
+    if (!this.last) {
+      this.GetNextQuestion();
+    } else {
+      console.log("do last action");
+    }
   }
 
   public submitTestResponses() {
@@ -94,6 +108,7 @@ export class AskQuestionsComponent implements OnInit {
   private GetNextQuestion() {
     this.currentQuestion = this.questionArray.pop();
     if (this.questionArray.length === 0) {
+      this.last = true;
       console.log("last question");
     }
   }

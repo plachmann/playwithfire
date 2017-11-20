@@ -2,12 +2,17 @@
   <div class="row content">
     <div class="col-sm-1">
     </div>
-    <div class="col-sm-11">
+    <div *ngIf="first" class="card-block col-sm-11">
+      <h4 class="card-title">You can put any content here</h4>
+      <p class="card-text">For example this line of text and</p>
+      <a (click)="startTest()" class="btn btn-primary">This button</a>
+    </div>
+    <div *ngIf="!first" class="col-sm-11">
       <h2>Current Question</h2>
       <br> {{ currentQuestion.questiontext }}
     </div>
   </div>
-  <div class="row content">
+  <div *ngIf="!first && !last" class="row content">
     <div class="col-sm-5">
     </div>
     <div class="col-sm-1" *ngFor="let answer of answerArray">
