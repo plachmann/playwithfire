@@ -25,6 +25,7 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "firebase": "^4.6.2",
+    "flamelink": "^0.13.2",
     "ngx-bootstrap": "^2.0.0-beta.8",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"

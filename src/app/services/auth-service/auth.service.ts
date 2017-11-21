@@ -9,8 +9,9 @@ import * as firebase from "firebase";
 
 @Injectable()
 export class AuthService {
-  isAnonymous: any;
-  uid: any;
+  public isAnonymous: any;
+  public uid: any;
+  public philiscool: boolean;
 
   constructor() {
     this.setCallback();
@@ -18,6 +19,7 @@ export class AuthService {
 
   public signIn() {
     console.log("trying signin");
+    this.philiscool = true;
     firebase
       .auth()
       .signInAnonymously()
@@ -31,13 +33,18 @@ export class AuthService {
     console.log("done with signIn");
   }
 
+  private setUID(theuid: string) {
+    this.uid = theuid;
+  }
+
   private setCallback() {
+    let self = this;
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
-        this.isAnonymous = user.isAnonymous;
-        this.uid = user.uid;
-        console.log(`uid = ${this.uid}`);
+        self.isAnonymous = user.isAnonymous;
+        self.uid = user.uid;
+        console.log(`uid = ${self.uid}`);
         // ...
       } else {
         // User is signed out.
