@@ -18,6 +18,6 @@ export class ItemService {
 
   addItem(item: MyTest) {
     let a = JSON.stringify(item);
-    this.itemsCollection.add(JSON.parse(JSON.stringify(item)));
+    this.itemsCollection.doc(item.userid).set(JSON.parse(JSON.stringify(item)));
   }
 }

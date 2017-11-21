@@ -29,6 +29,7 @@ interface Answer {
 export class AskQuestionsComponent implements OnInit {
   first: boolean = true;
   last: boolean = false;
+  done: boolean = false;
 
   myTest: MyTest;
 
@@ -80,16 +81,26 @@ export class AskQuestionsComponent implements OnInit {
   public passTheSalt() {
     console.log("salt passed");
     if (!this.last) {
+      this.submitTestResponses();
       this.GetNextQuestion();
     } else {
       console.log("do last action");
       this.submitTestResponses();
+      this.done = true;
     }
   }
 
   private submitTestResponses() {
-    // this.itemService.addItem(this.r1);
-
+    // get the values
+    // add to myTest
+    // update firestore
+    let newItem = new MyItem();
+    newItem.questiontext = this.currentQuestion.questiontext;
+    newItem.questionweight = this.currentQuestion.questionweight;
+    newItem.answertext = "";
+    newItem.answervalue = 0;
+    this.myTest.items.push(newItem);
+    this.itemService.addItem(this.myTest);
     console.log("added");
   }
 
