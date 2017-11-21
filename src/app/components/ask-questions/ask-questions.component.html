@@ -18,11 +18,12 @@
     <div class="col-sm-5">
     </div>
     <div class="col-sm-1" *ngFor="let answer of answerArray">
-      <a [routerLink]="" (click)="passTheSalt()" class="btn btn-primary">{{answer.answertext}}</a>
+      <a [routerLink]="" (click)="passTheSalt(answer.answertext, answer.answervalue)" class="btn btn-primary">{{answer.answertext}}</a>
     </div>
   </div>
 
   <div *ngIf="isQuizDone" class="row content">
-    Thank You. This is the end of the quiz. 
-  </div>  
+    Thank You. This is the end of the quiz.
+    <br> Your score is: {{finalScore}}
+  </div>
 </div>

@@ -33,9 +33,8 @@ export class AskQuestionsComponent implements OnInit {
 
   isQuizDone: boolean = false;
 
-
   myTest: MyTest;
-
+  finalScore: number;
 
   questionsCol: AngularFirestoreCollection<Question>;
   questions: Observable<Question[]>;
@@ -82,32 +81,40 @@ export class AskQuestionsComponent implements OnInit {
     this.itemService.addItem(this.myTest);
   }
 
-  public passTheSalt() {
+  public passTheSalt(answer: string, value: number) {
     console.log("salt passed");
     if (this.questionArray.length === 0) {
       this.last = true;
       console.log("last question");
     }
     if (!this.last) {
-      this.submitTestResponses();
+      this.submitTestResponses(answer, value);
       this.GetNextQuestion();
     } else {
       this.isQuizDone = true;
       console.log("do last action");
-      this.submitTestResponses();
-      this.done = true;
+      this.submitTestResponses(answer, value);
+      this.CalcScore();
     }
   }
 
-  private submitTestResponses() {
+  private CalcScore() {
+    let score = 0;
+    for (let item of this.myTest.items) {
+      score += item.answervalue * item.questionweight;
+    }
+    this.finalScore = score;
+  }
+
+  private submitTestResponses(answer: string, value: number) {
     // get the values
     // add to myTest
     // update firestore
     let newItem = new MyItem();
     newItem.questiontext = this.currentQuestion.questiontext;
     newItem.questionweight = this.currentQuestion.questionweight;
-    newItem.answertext = "";
-    newItem.answervalue = 0;
+    newItem.answertext = answer;
+    newItem.answervalue = value;
     this.myTest.items.push(newItem);
     this.itemService.addItem(this.myTest);
     console.log("added");
