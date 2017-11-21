@@ -13,7 +13,7 @@
       <h4>{{ currentQuestion.questiontext }}</h4>
     </div>
   </div>
-  <div *ngIf="!first && !last" class="row content">
+  <div *ngIf="!first" class="row content">
     <div class="col-sm-5">
     </div>
     <div class="col-sm-1" *ngFor="let answer of answerArray">

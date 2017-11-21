@@ -3,7 +3,7 @@ import { ItemService } from "../../services/item-service/item.service";
 import { AuthService } from "../../services/auth-service/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Rx";
-import { Item } from "../../models/item";
+import { Item, Test, MyItem, MyTest } from "../../models/item";
 import {
   AngularFirestore,
   AngularFirestoreCollection
@@ -29,6 +29,9 @@ interface Answer {
 export class AskQuestionsComponent implements OnInit {
   first: boolean = true;
   last: boolean = false;
+
+  myTest: MyTest;
+
   questionsCol: AngularFirestoreCollection<Question>;
   questions: Observable<Question[]>;
   questionArray: Question[];
@@ -43,18 +46,11 @@ export class AskQuestionsComponent implements OnInit {
     questionweight: 0
   };
 
-  r1: Item = {
-    questiontext: "Question 1",
-    questionweight: 3,
-    answertext: "Answer 1",
-    answervalue: 2
-  };
-
   constructor(
     private afs: AngularFirestore,
     private itemService: ItemService,
     private storageService: StorageService,
-    private authService: AuthService
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -71,7 +67,14 @@ export class AskQuestionsComponent implements OnInit {
   }
 
   public startTest() {
+    // use the authService to get this users id.
+    // populate the document with it
+    // add the document
     this.first = false;
+    this.myTest = new MyTest();
+    this.myTest.userid = this.authService.uid;
+    this.myTest.items = new Array();
+    this.itemService.addItem(this.myTest);
   }
 
   public passTheSalt() {
@@ -80,11 +83,12 @@ export class AskQuestionsComponent implements OnInit {
       this.GetNextQuestion();
     } else {
       console.log("do last action");
+      this.submitTestResponses();
     }
   }
 
-  public submitTestResponses() {
-    this.itemService.addItem(this.r1);
+  private submitTestResponses() {
+    // this.itemService.addItem(this.r1);
 
     console.log("added");
   }
