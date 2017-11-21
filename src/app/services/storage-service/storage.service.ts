@@ -19,6 +19,8 @@ export class StorageService {
     // Create a reference to 'mountains.jpg'
     let mountainsRef = storageRef.child("mountains.txt");
 
+    let mountainsRef = storageRef.child('mountains.txt');
+
     let message = "This is my message.";
 
     mountainsRef
