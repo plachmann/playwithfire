@@ -7,17 +7,21 @@
       <p class="card-text">Press the button and let's go!</p>
       <a (click)="startTest()" class="btn btn-primary">Get the party started!</a>
     </div>
-    <div *ngIf="!first" class="col-sm-11">
+    <div *ngIf="!first &&  !isQuizDone" class="col-sm-11">
       <h2>Current Question</h2>
       <br>
       <h4>{{ currentQuestion.questiontext }}</h4>
     </div>
   </div>
-  <div *ngIf="!first && !last" class="row content">
+  <div *ngIf="!first && !last && !isQuizDone" class="row content">
     <div class="col-sm-5">
     </div>
     <div class="col-sm-1" *ngFor="let answer of answerArray">
       <a [routerLink]="" (click)="passTheSalt()" class="btn btn-primary">{{answer.answertext}}</a>
     </div>
   </div>
+
+  <div *ngIf="isQuizDone" class="row content">
+    Thank You. This is the end of the quiz. 
+  </div>  
 </div>

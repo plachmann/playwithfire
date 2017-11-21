@@ -29,6 +29,7 @@ interface Answer {
 export class AskQuestionsComponent implements OnInit {
   first: boolean = true;
   last: boolean = false;
+  isQuizDone: boolean = false;
   questionsCol: AngularFirestoreCollection<Question>;
   questions: Observable<Question[]>;
   questionArray: Question[];
@@ -76,9 +77,14 @@ export class AskQuestionsComponent implements OnInit {
 
   public passTheSalt() {
     console.log("salt passed");
+    if (this.questionArray.length === 0) {
+      this.last = true;
+      console.log("last question");
+    }
     if (!this.last) {
       this.GetNextQuestion();
     } else {
+      this.isQuizDone = true;
       console.log("do last action");
     }
   }
@@ -106,10 +112,7 @@ export class AskQuestionsComponent implements OnInit {
   }
 
   private GetNextQuestion() {
+    console.log(this.questionArray);
     this.currentQuestion = this.questionArray.pop();
-    if (this.questionArray.length === 0) {
-      this.last = true;
-      console.log("last question");
-    }
   }
 }
